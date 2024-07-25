@@ -1,0 +1,26 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/*"]
+    },
+    "dev": {
+      "dependsOn": ["^dev"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "env": ["API_URL"],
+      "cache": false,
+      "persistent": true
+    },
+    "nextjs-frontend#start": {
+      "dependsOn": ["build"]
+    },
+    "nestjs-backend#start:prod": {
+      "dependsOn": ["build"]
+    },
+    "check-types": {
+      "cache": false
+    }
+  }
+}

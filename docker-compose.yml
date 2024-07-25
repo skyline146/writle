@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres_db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin4
+    env_file:
+      - .env
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - '5050:80'
+    depends_on:
+      - db
+
+  # backend-dev:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: development
+  #   container_name: v2hx.backend.dev
+  #   ports:
+  #     - '3000:7142'
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./src:/backend/src
+
+  # backend:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: production
+  #   container_name: v2hx.backend
+  #   restart: always
+  #   ports:
+  #     - "7142:7142"
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./src:/backend/src
+  #     - ./resources:/backend/resources
+  #     - ./logs:/backend/logs
+
+  # frontend:
+  #   build:
+  #     context: ../v2hx-frontend/
+  #     dockerfile: Dockerfile
+  #   container_name: v2hx.frontend
+  #   ports:
+  #     - "4173:4173"
+  #   volumes:
+  #     - ../v2hx-frontend/src:/frontend/src
+  #     - ../v2hx-frontend/public/features.json:/frontend/dist/features.json
+  #     - ../v2hx-frontend/public/robots.txt:/frontend/dist/robots.txt
+  #     - ../v2hx-frontend/public/sitemap.xml:/frontend/dist/sitemap.xml
