@@ -1,27 +1,35 @@
 {
-  "name": "nextjs-frontend",
-  "version": "0.1.0",
+  "name": "posts-app-nextjs-frontend",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "bun run dev-server.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "format": "prettier -w '**/*.{ts,js,tsx,jsx,json}'"
   },
   "dependencies": {
-    "@posts-app/types": "workspace:*",
+    "@hookform/resolvers": "^3.9.0",
+    "@posts-app/zod": "workspace:*",
     "@tabler/icons-react": "^3.7.0",
+    "cookie": "^0.6.0",
     "next": "^14.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.1",
     "sharp": "^0.33.4",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@posts-app/types": "workspace:*",
+    "@types/cookie": "^0.6.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",

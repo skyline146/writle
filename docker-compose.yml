@@ -1,17 +1,16 @@
-version: '3.8'
-
 services:
   db:
     image: postgres
     container_name: postgres_db
     restart: always
     env_file:
-      - .env
+      - /packages/database/.env
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=posts-app-db
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ./packages/database/pgdata:/var/lib/postgresql/data
     ports:
       - '5432:5432'
 
@@ -20,7 +19,7 @@ services:
     restart: always
     container_name: pgadmin4
     env_file:
-      - .env
+      - /packages/database/.env
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
@@ -29,42 +28,41 @@ services:
     depends_on:
       - db
 
-  # backend-dev:
+  # api:
   #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     target: development
-  #   container_name: v2hx.backend.dev
-  #   ports:
-  #     - '3000:7142'
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - ./src:/backend/src
-
-  # backend:
-  #   build:
-  #     context: .
+  #     context: ./apps/api
   #     dockerfile: Dockerfile
   #     target: production
-  #   container_name: v2hx.backend
+  #   container_name: api
   #   restart: always
+  #   env_file:
+  #     - ./apps/api/.env
   #   ports:
-  #     - "7142:7142"
+  #     - '${PORT}:${PORT}'
   #   depends_on:
   #     - db
   #   volumes:
-  #     - ./src:/backend/src
-  #     - ./resources:/backend/resources
-  #     - ./logs:/backend/logs
+  #     - ./apps/api/src:/api/src
 
-  # frontend:
+  # posts-web-app:
   #   build:
-  #     context: ../v2hx-frontend/
+  #     context: ./apps/web
   #     dockerfile: Dockerfile
-  #   container_name: v2hx.frontend
+  #   container_name: posts-web-app
+  #   env_file:
+  #     - ./apps/posts-web/.env
   #   ports:
-  #     - "4173:4173"
+  #     - '${PORT}:${PORT}'
+  #   volumes:
+  #     - ./apps/posts-web/src:/posts-web-app/src
+
+  # admin-panel:
+  #   build:
+  #     context: ./apps/admin-panel
+  #     dockerfile: Dockerfile
+  #   container_name: admin-panel
+  #   ports:
+  #     - '3001:3001'
   #   volumes:
   #     - ../v2hx-frontend/src:/frontend/src
   #     - ../v2hx-frontend/public/features.json:/frontend/dist/features.json

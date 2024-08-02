@@ -18,12 +18,13 @@
 
 body {
   color: white;
-  background: linear-gradient(
+  background-color: black;
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 @layer utilities {

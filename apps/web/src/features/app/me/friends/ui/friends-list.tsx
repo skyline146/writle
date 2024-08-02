@@ -29,11 +29,7 @@ async function getFriends(search?: string): Promise<User[]> {
   });
 }
 
-interface FriendsListProps {
-  search?: string;
-}
-
-export const FriendsList = async ({ search }: FriendsListProps) => {
+export const FriendsList = async ({ search }: { search?: string }) => {
   const friends = await getFriends(search);
 
   if (!friends.length) {

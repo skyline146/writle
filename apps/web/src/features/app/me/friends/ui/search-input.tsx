@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useDelayedValue } from '@/features/shared/lib/use-delayed-value';
 import { Input } from '@/features/shared/ui/input';
+import { twMerge } from 'tailwind-merge';
 
 interface SearchInputProps {
-  searchParams: {
-    searchText?: string;
-  };
+  className?: string;
 }
 
-export const SearchInput = () => {
+export const SearchInput = ({ className }: SearchInputProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -37,7 +36,7 @@ export const SearchInput = () => {
   return (
     <Input
       placeholder='Search'
-      className='w-full xs:w-auto'
+      className={twMerge('w-full xs:w-auto', className)}
       type='search'
       defaultValue={value}
       onChange={(e) => setValue(e.target.value)}

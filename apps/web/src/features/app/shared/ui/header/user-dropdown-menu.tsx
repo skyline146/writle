@@ -6,6 +6,7 @@ import {
   IconNotes,
   IconUsers,
   IconTool,
+  IconLogout,
 } from '@tabler/icons-react';
 import Link from 'next/link';
 // import { User } from '@posts-app/types';
@@ -48,18 +49,23 @@ export const UserDropdownMenu = async () => {
           <nav className='invisible absolute left-0 right-0 m-auto w-3/4 translate-y-3 scale-90 pt-5 opacity-0 transition-all duration-300 group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:scale-100 group-hover/dropdown:opacity-100 sm:w-full'>
             <ul className='rounded-md bg-neutral-900 *:p-3'>
               <li>
-                <NavLink href='/me/posts' icon={<IconNotes />} withArrow>
+                <NavLink href='/me/posts' icon={<IconNotes />}>
                   My posts
                 </NavLink>
               </li>
               <li>
-                <NavLink href='/me/friends' icon={<IconUsers />} withArrow>
+                <NavLink href='/me/friends' icon={<IconUsers />}>
                   Friends
                 </NavLink>
               </li>
               <li>
-                <NavLink href='/me/settings' icon={<IconTool />} withArrow>
+                <NavLink href='/me/settings' icon={<IconTool />}>
                   Settings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink href='/' icon={<IconLogout />}>
+                  Sign out
                 </NavLink>
               </li>
             </ul>

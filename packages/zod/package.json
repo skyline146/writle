@@ -1,0 +1,20 @@
+{
+  "name": "@posts-app/zod",
+  "version": "1.0.0",
+  "description": "Zod validation schemas",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "swc src -d dist",
+    "build:common": "swc src -d dist --out-file-extension cjs",
+    "build:module": "swc src -d dist --config module.type=es6 --out-file-extension mjs",
+    "dev:deprecated": "swc src -d dist --watch"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {}
+}

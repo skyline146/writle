@@ -1,11 +1,23 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// This function can be marked `async` if using `await` inside
+let accessToken: string | null = null;
+
 export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
 
-  requestHeaders.set('test-header', '123');
+  // console.log('middleware');
+
+  // console.log(request.ip || '127.0.0.1');
+
+  // if (data.accessToken) {
+  //   console.log('token exists', data.accessToken);
+  // } else {
+  //   console.log('no token');
+  //   data.accessToken = 'jwt-token';
+  // }
+
+  // requestHeaders.set('accessToken', data.accessToken);
 
   return NextResponse.next({
     request: {
@@ -14,7 +26,6 @@ export function middleware(request: NextRequest) {
   });
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/me/friends'],
+  matcher: ['/', '/me/:path*', '/auth/:path*'],
 };

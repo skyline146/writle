@@ -1,4 +1,4 @@
-import { User } from './user';
+import { User } from '#models';
 
 export type Post = {
   id: string;
