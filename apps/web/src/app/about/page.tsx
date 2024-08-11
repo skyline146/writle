@@ -47,7 +47,8 @@ export default function About() {
             <li>
               Tools -{' '}
               <ResourceLink title='Turborepo' link='https://turbo.build/' />,{' '}
-              <ResourceLink title='Docker' link='https://www.docker.com/' />
+              <ResourceLink title='Docker' link='https://www.docker.com/' />,{' '}
+              <ResourceLink title='Bun' link='https://bun.sh/' />
             </li>
           </ul>
         </div>

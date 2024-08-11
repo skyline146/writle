@@ -2,14 +2,17 @@
   "name": "posts-app-hono-api",
   "scripts": {
     "dev": "bun run --hot src/app.ts",
-    "format": "prettier -w '**/*.{ts,js}'"
+    "build": "bun build --entrypoints ./src/app.ts --outdir ./dist --target bun --splitting",
+    "format": "prettier -w '**/*.{ts,js}'",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "hono": "^4.5.3",
     "@posts-app/database": "workspace:*",
     "@posts-app/zod": "workspace:*",
+    "@posts-app/types": "workspace:*",
     "drizzle-orm": "^0.32.1",
+    "googleapis": "^140.0.1",
+    "hono": "^4.5.3",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

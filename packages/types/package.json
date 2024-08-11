@@ -1,11 +1,18 @@
 {
   "name": "@posts-app/types",
   "version": "1.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
   "imports": {
     "#*": [
       "./src/*",
       "./src/*.ts",
       "./src/*/index.ts"
     ]
+  },
+  "dependencies": {
+    "@posts-app/database": "workspace:*",
+    "@posts-app/zod": "workspace:*",
+    "zod": "^3.23.8"
   }
 }

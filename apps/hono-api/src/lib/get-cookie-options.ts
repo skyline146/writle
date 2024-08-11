@@ -1,23 +1,15 @@
-import { CookieOptions } from 'hono/utils/cookie';
+import { CustomCookieOptions } from '@posts-app/types';
 
 type Cookie = 'access_token' | 'refresh_token';
 
-const cookiePeriods: Record<Cookie, number> = {
-  access_token: 5 * 60 * 1000,
-  refresh_token: 7 * 24 * 60 * 60 * 1000,
+export const cookiePeriods: Record<Cookie, number> = {
+  access_token: 60 * 5,
+  refresh_token: 60 * 60 * 24 * 7
 };
 
 const cookiePaths: Record<Cookie, string> = {
   access_token: '/',
-  refresh_token: '/api/auth/refresh',
-};
-
-type CustomCookieOptions = {
-  httpOnly: boolean;
-  secure: boolean;
-  path: string;
-  sameSite: CookieOptions['sameSite'];
-  expires: Date;
+  refresh_token: '/api/auth/refresh'
 };
 
 export const getCookieOptions = (name: Cookie): CustomCookieOptions => {
@@ -26,6 +18,6 @@ export const getCookieOptions = (name: Cookie): CustomCookieOptions => {
     secure: true,
     path: cookiePaths[name],
     sameSite: 'strict',
-    expires: new Date(Date.now() + cookiePeriods[name]),
+    expires: Date.now() + cookiePeriods[name] * 1000
   };
 };

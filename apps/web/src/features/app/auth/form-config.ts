@@ -1,4 +1,7 @@
-import { SignInSchema, SignUpWithConfirmPasswordSchema } from '@posts-app/zod';
+import {
+  SignInWithCredentialsSchema,
+  SignUpWithConfirmPasswordSchema,
+} from '@posts-app/zod';
 import { signIn, signUp } from './actions';
 
 export const authMode = {
@@ -10,7 +13,7 @@ export const authMode = {
       to: 'sign-up',
     },
     action: signIn,
-    schema: SignInSchema,
+    validationSchema: SignInWithCredentialsSchema,
   },
   signUp: {
     text: 'Sign Up',
@@ -20,7 +23,7 @@ export const authMode = {
       to: 'sign-in',
     },
     action: signUp,
-    schema: SignUpWithConfirmPasswordSchema,
+    validationSchema: SignUpWithConfirmPasswordSchema,
   },
 } as const;
 

@@ -9,10 +9,11 @@ interface ProfilePictureProps {
 
 export const ProfilePicture = ({ user, className }: ProfilePictureProps) => {
   const { firstName, profilePicture } = user;
+
   return (
     <div
       className={twMerge(
-        'pointer-events-none size-full rounded-full border-[3px] border-neutral-600 p-[2px] text-xl',
+        'pointer-events-none size-full rounded-full border-[3px] border-neutral-600 text-xl',
         className,
       )}
     >
@@ -27,8 +28,6 @@ export const ProfilePicture = ({ user, className }: ProfilePictureProps) => {
             sizes='100%'
             // placeholder="blur"
             // blurDataURL={dataUrl}
-            // width={1200}
-            // height={1200}
           />
         ) : (
           firstName.at(0)

@@ -24,7 +24,7 @@ async function getFriends(search?: string): Promise<User[]> {
         results = data.filter((user) => user.username.startsWith(search));
       }
 
-      res(results);
+      res(results as User[]);
     }, 500);
   });
 }

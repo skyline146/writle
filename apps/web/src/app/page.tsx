@@ -1,9 +1,10 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 
 export default function Home() {
   return (
     <div className='flex h-full flex-col items-center justify-between'>
-      {/* todo. load posts from friends */}
+      {/* TODO: load posts from friends */}
       <div className='z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex'>
         {/* <Link
           href="/posts"

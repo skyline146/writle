@@ -1,18 +1,18 @@
-### Fullstack monorepo application: social network for publishing posts, adding friends. Scrolling feed, based on your choosed interests or friends posts.
+### Fullstack monorepo application: social network for publishing posts, adding friends. Scrolling feed, based on your choosen interests or friends posts.
 
 ## Used technologies:
 
 - ### Frontend:
-  - ### [Next.js](https://nextjs.org/)
-  - ### [React](https://react.dev/)
-  - ### [TailwindCSS](https://tailwindcss.com/)
+  - [Next.js](https://nextjs.org/)
+  - [React](https://react.dev/)
+  - [TailwindCSS](https://tailwindcss.com/)
 - ### Backend:
-  - ### [Nest.js](https://nestjs.com/) (fastify adapter)
-  - ### [Prisma](https://www.prisma.io/)
-  - ### [PostgreSQL](https://www.postgresql.org/)
+  - [Nest.js](https://nestjs.com/) (fastify adapter)
+  - [Prisma](https://www.prisma.io/)
+  - [PostgreSQL](https://www.postgresql.org/)
 - ### Tools:
-  - ### [Turborepo](https://turbo.build/repo)
-  - ### [Docker](https://www.docker.com/) ([compose](https://docs.docker.com/compose/))
+  - [Turborepo](https://turbo.build/repo)
+  - [Docker](https://www.docker.com/) ([compose](https://docs.docker.com/compose/))
 
 ## Getting Started (pnpm required)
 

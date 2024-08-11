@@ -1,19 +1,26 @@
-import { pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+import { pgEnum, pgTable, text, timestamp, uniqueIndex, uuid, varchar } from 'drizzle-orm/pg-core';
 
-export const users = pgTable('users', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  username: varchar('username', { length: 30 }).unique().notNull(),
-  password: text('password').notNull(),
-  firstName: varchar('first_name', { length: 50 }).notNull(),
-  lastName: varchar('last_name', { length: 50 }).notNull(),
-  profilePicture: text('profile_picture'),
-  registeredAt: timestamp('registered_at').defaultNow()
-});
+export const providerEnum = pgEnum('provider', ['credentials', 'google', 'discord']);
+export const providers = providerEnum.enumValues;
 
-export const SelectUserWithoutPassword = {
-  id: users.id,
-  username: users.username,
-  firstName: users.firstName,
-  lastName: users.lastName,
-  registeredAt: users.registeredAt
-} as const;
+export const users = pgTable(
+  'users',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    username: varchar('username', { length: 30 }).unique(),
+    password: text('password'),
+    email: varchar('email', { length: 80 }).unique(),
+    firstName: varchar('first_name', { length: 50 }).notNull(),
+    lastName: varchar('last_name', { length: 50 }),
+    profilePicture: text('profile_picture'),
+    provider: providerEnum('provider').notNull().default('credentials'),
+    registeredAt: timestamp('registered_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull()
+  },
+  (users) => {
+    return {
+      usernameIdx: uniqueIndex('username_idx').on(users.username),
+      emailIdx: uniqueIndex('email_idx').on(users.email)
+    };
+  }
+);

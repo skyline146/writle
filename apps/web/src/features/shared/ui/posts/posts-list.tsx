@@ -1,5 +1,5 @@
 import { PostCard } from './post-card';
-import { User, Post } from '@posts-app/types';
+import { User } from '@posts-app/types';
 
 async function getPosts(): Promise<any> {
   return await new Promise((res) => {
@@ -65,7 +65,7 @@ interface PostsListProps {
 }
 
 export const PostsList = async ({ author, withAuthor }: PostsListProps) => {
-  const posts: Post[] = await getPosts();
+  const posts: any[] = await getPosts();
 
   return posts.length > 0 ? (
     posts.map((post) => {

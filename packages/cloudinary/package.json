@@ -1,0 +1,6 @@
+{
+  "name": "@posts-app/cloudinary",
+  "dependencies": {
+    "cloudinary": "^2.4.0"
+  }
+}

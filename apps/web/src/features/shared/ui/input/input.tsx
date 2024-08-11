@@ -8,6 +8,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
+//TODO: implement cva for input different states
+
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, name, label, error, ...props }, ref) => {
     const input: ReactNode = (

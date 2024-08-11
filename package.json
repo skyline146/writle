@@ -1,13 +1,23 @@
 {
   "name": "posts-social-network",
   "version": "1.0.0",
-  "description": "Posts social network. Using monorepo, turborepo, next.js, nest.js",
+  "author": "diman404",
+  "module": "index.ts",
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
-  "private": true,
+  "devDependencies": {
+    "turbo": "^2.0.9",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "description": "Posts social network. Using monorepo, turborepo, next.js, nest.js",
+  "license": "ISC",
   "packageManager": "bun@1.1.21",
+  "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -16,16 +26,5 @@
     "check-types": "turbo run check-types",
     "lint": "turbo run lint",
     "format": "turbo run format"
-  },
-  "author": "diman404",
-  "license": "ISC",
-  "devDependencies": {
-    "turbo": "^2.0.9",
-    "@types/bun": "latest"
-  },
-  "module": "index.ts",
-  "type": "module",
-  "peerDependencies": {
-    "typescript": "^5.0.0"
   }
 }

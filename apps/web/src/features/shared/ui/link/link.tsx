@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 interface LinkProps {
   href: string;
   className?: string;
+  active?: boolean;
   children: React.ReactNode;
   icon?: React.ReactNode;
   withArrow?: boolean;
@@ -15,6 +16,7 @@ export const NavLink = ({
   children,
   icon,
   withArrow,
+  active,
 }: LinkProps) => {
   return (
     <Link href={href} className='h-full'>
@@ -22,6 +24,7 @@ export const NavLink = ({
         className={twMerge(
           'group/link flex w-full gap-2 text-neutral-400 hover:text-white',
           className,
+          active && 'text-white',
         )}
       >
         {icon}

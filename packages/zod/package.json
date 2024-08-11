@@ -14,7 +14,8 @@
     "dev:deprecated": "swc src -d dist --watch"
   },
   "dependencies": {
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@posts-app/database": "workspace:*"
   },
   "devDependencies": {}
 }
