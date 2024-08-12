@@ -26,19 +26,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       />
     );
 
-    if (!label) {
-      return (
-        <div className='flex flex-col'>
-          {input}
-          {error && <p className='text-sm text-red-500'>{error}</p>}
-        </div>
-      );
-    }
-
     return (
-      <label htmlFor={name} className='flex flex-col'>
-        {label}: {input}
-      </label>
+      <div className='flex flex-col'>
+        {label && (
+          <label htmlFor={name} className='flex flex-col'>
+            {label}:
+          </label>
+        )}
+        {input}
+        {error && <p className='text-sm text-red-500'>{error}</p>}
+      </div>
     );
   },
 );

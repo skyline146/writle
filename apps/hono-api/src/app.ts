@@ -48,7 +48,7 @@ app.get('/file', async (c) => {
     });
     // Pipe a readable stream.
 
-    const file = Bun.file(join(process.cwd(), '/static/test.txt'));
+    const file = Bun.file('./static/test1.jpg');
     await stream.pipe(file.stream());
   });
 });

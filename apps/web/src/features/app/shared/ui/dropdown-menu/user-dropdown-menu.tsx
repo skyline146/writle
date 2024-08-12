@@ -2,11 +2,11 @@ import { Button } from '@/features/shared/ui/button';
 import { NavLink } from '@/features/shared/ui/link';
 import { ProfilePicture } from '@/features/shared/ui/profile-picture';
 import {
-  IconCaretDownFilled,
   IconNotes,
   IconUsers,
   IconTool,
   IconBell,
+  IconChevronDown,
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import { getCurrentUser } from '../../get-current-user';
@@ -24,7 +24,7 @@ export const UserDropdownMenu = async () => {
             <p className='m-0'>
               {user.firstName} {user.lastName}
             </p>
-            <IconCaretDownFilled className='transition-transform duration-300 group-hover/dropdown:rotate-180' />
+            <IconChevronDown className='transition-transform duration-300 group-hover/dropdown:rotate-180' />
           </div>
           <nav className='invisible absolute left-0 right-0 m-auto w-3/4 translate-y-3 scale-90 pt-5 opacity-0 transition-all duration-300 group-hover/dropdown:visible group-hover/dropdown:translate-y-0 group-hover/dropdown:scale-100 group-hover/dropdown:opacity-100 sm:w-full'>
             <ul className='rounded-md bg-neutral-900 *:p-3'>

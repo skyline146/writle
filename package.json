@@ -1,5 +1,5 @@
 {
-  "name": "posts-social-network",
+  "name": "writle",
   "version": "1.0.0",
   "author": "diman404",
   "module": "index.ts",
@@ -14,7 +14,7 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "description": "Posts social network. Using monorepo, turborepo, next.js, nest.js",
+  "description": "Writle. Api, web application, created using monorepo, Next.js, Hono, DrizzleORM.",
   "license": "ISC",
   "packageManager": "bun@1.1.21",
   "private": true,

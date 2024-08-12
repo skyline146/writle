@@ -16,4 +16,10 @@ export type SessionCookies = {
   sessionId: string;
 };
 
+export type JwtPayload = {
+  sub: string;
+  userId: string;
+  exp: number;
+};
+
 export type Session = typeof sessions.$inferSelect;

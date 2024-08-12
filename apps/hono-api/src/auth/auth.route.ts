@@ -22,12 +22,18 @@ authRouter.post('/sign-in', async (c) => {
   return c.text('sign in');
 });
 
+// GET: /auth/oauth2/:provider
+// Creating OAuth provider authorization url
+// Return: redirect to OAuth provider
 authRouter.get('/oauth2/:provider', async (c) => {
   const provider = getProvider(c.req.param('provider') as OAuthProvider);
 
   return c.redirect(provider.getAuthorizationUrl());
 });
 
+// GET: /auth/oauth2-callback/:provider
+// Callback from OAuth provider
+// Return: redirect to frontend application with session
 authRouter.get('/oauth2-callback/:provider', async (c) => {
   const query = c.req.query();
 
@@ -74,15 +80,14 @@ authRouter.get('/oauth2-callback/:provider', async (c) => {
   return c.redirect(`http://localhost:3000/auth/oauth-callback`);
 });
 
-// POST: /auth/sign-up Validate user's input, creating hashed password, insert user into db.
+// POST: /auth/sign-up
+// Validate user's input, creating hashed password, insert user into db.
 // Return: accessToken and options, sessionId
 authRouter.post('/sign-up', async (c) => {
   const newUser = await c.req.json<SignUpWithCredentials>();
 
   if (await usersService.findOneByUsernameOrEmail(newUser.username)) {
-    throw new HTTPException(400, {
-      res: c.json({ message: 'Username already exists' })
-    });
+    throw httpException(c, 400, 'Username already exists');
   }
 
   const createdUserId = await usersService.createWithCredentials(newUser);
@@ -95,13 +100,23 @@ authRouter.post('/sign-up', async (c) => {
   return c.json(session, 201);
 });
 
-authRouter.post('/sign-out', jwtAuth, async (c) => {
-  const sessionId = getCookie(c, 'sessionId') as string;
+// POST: /auth/sign-out
+// Validating user's token, sign out, deleting session from database
+// Return: 'Success'
+authRouter.post('/sign-out', async (c) => {
+  const sessionId = getCookie(c, 'sessionId');
+
+  if (!sessionId) {
+    throw httpException(c, 401, 'Unathorized sign out');
+  }
 
   await sessionsService.remove(sessionId);
   return c.text('Success');
 });
 
+// GET: /auth/oauth2/:provider
+// Creating OAuth provider authorization url
+// Return: redirect to OAuth provider
 authRouter.post('/refresh', async (c) => {
   const sessionId = getCookie(c, 'sessionId') as string;
 

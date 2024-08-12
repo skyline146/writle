@@ -5,12 +5,18 @@ import {
   FriendCardSkeleton,
   SearchInput,
 } from '@/features/app/me/friends/ui';
+import { Metadata } from 'next';
 
 interface FriendsProps extends PageProps {
   searchParams: {
     searchText?: string;
   };
 }
+
+export const metadata: Metadata = {
+  title: 'Writle - My Friends',
+  description: 'User related friends page.',
+};
 
 export default async function Friends({ searchParams }: FriendsProps) {
   const { searchText } = searchParams;

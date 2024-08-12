@@ -2,25 +2,15 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { parseJwt } from './features/shared/lib/parse-jwt';
-import { SessionCookies } from '@posts-app/types';
-import { API_URLS } from './features/shared/config';
+import { JwtPayload } from '@posts-app/types';
 import { setSessionCookiesToResponse } from './features/shared/lib/set-session-cookies';
-
-type JwtPayload = {
-  sub: string;
-  userId: string;
-  exp: number;
-};
+import { refreshTokens } from './features/shared/lib/refresh-session';
 
 async function refreshSession(request: NextRequest) {
-  const response = await fetch(API_URLS.AUTH.REFRESH_SESSION, {
-    method: 'POST',
-    headers: {
-      cookie: cookies().toString(),
-    },
-  });
+  const session = await refreshTokens();
 
-  if (!response.ok) {
+  if (!session) {
+    //if request fails, redirect to '/', also delete session cookies
     const res = NextResponse.redirect(new URL('/', request.url));
     res.cookies.delete('sessionId');
     res.cookies.delete('accessToken');
@@ -28,12 +18,24 @@ async function refreshSession(request: NextRequest) {
     return res;
   }
 
-  const session: SessionCookies = await response.json();
-  const res = setSessionCookiesToResponse(NextResponse.next(), session);
-  return res;
+  //after successfull refresh check if visited /auth/* page
+  const isAuthPage = new URL(request.url).pathname.startsWith('/auth');
+  if (isAuthPage) {
+    //redirect to /me/posts
+    const res = NextResponse.redirect(new URL('/me/posts', request.url));
+    return setSessionCookiesToResponse(res, session);
+  } else {
+    //open requested page
+    return setSessionCookiesToResponse(NextResponse.next(), session);
+  }
 }
 
 export async function middleware(request: NextRequest) {
+  //check if request is server action, skip middleware
+  if (request.method === 'POST') {
+    return;
+  }
+
   const requestHeaders = new Headers(request.headers);
   const url = new URL(request.url);
 
@@ -61,7 +63,8 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (['/auth/sign-in', '/auth/sign-up'].includes(url.pathname)) {
+  //session tokens validation passed, check if visited /auth/* page -> redirect to /me/posts
+  if (url.pathname.startsWith('/auth')) {
     return NextResponse.redirect(new URL('/me/posts', request.url));
   }
 
@@ -73,5 +76,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/me/:path*', '/auth/:path*'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

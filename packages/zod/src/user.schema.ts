@@ -48,3 +48,16 @@ export const UserSchema = z.object({
   registeredAt: z.date(),
   updatedAt: z.date()
 }) satisfies z.ZodType<UserDatabasePlain>;
+
+export const UserSettingsSchema = UserSchema.pick({
+  firstName: true,
+  lastName: true
+}).extend({
+  username: UserSchema.shape.username.or(z.null()),
+  email: UserSchema.shape.email.or(z.null()),
+  profilePicture: z
+    .any()
+    .refine((file: File) => file?.size <= 5242880, 'Media file must be less than 5 MB')
+    .or(z.null())
+    .or(z.undefined())
+});

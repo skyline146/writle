@@ -8,9 +8,9 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Posts Social Network',
+  title: 'Writle',
   description:
-    'Pet project to create, publish posts. View content, posted by your friends.',
+    'Web application for publishing posts/articles, adding friends, viewing posts by other people based on your interests.',
 };
 
 export default function RootLayout({

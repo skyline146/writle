@@ -1,6 +1,7 @@
 import { IconX } from '@tabler/icons-react';
 import { ProfilePicture } from '@/features/shared/ui/profile-picture';
 import { User } from '@posts-app/types';
+import { DeleteButton } from '@/features/shared/ui';
 
 interface FriendCardProps {
   friend: User;
@@ -18,10 +19,7 @@ export const FriendCard = ({ friend }: FriendCardProps) => {
           <p className='text-neutral-400'>@{friend.username}</p>
         </div>
       </div>
-      <IconX
-        className='cursor-pointer text-neutral-700 hover:text-red-500'
-        size={30}
-      />
+      <DeleteButton size={30} />
     </div>
   );
 };

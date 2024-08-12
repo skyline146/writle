@@ -25,7 +25,11 @@ export const setSessionCookiesToResponse = (
   return response;
 };
 
-export const setSessionCookies = (session: SessionCookies) => {
+export const setSessionCookies = (session: SessionCookies | null) => {
+  if (!session) {
+    throw new Error('Session tokens must be provided');
+  }
+
   const { accessToken, sessionId } = session;
 
   cookies().set('accessToken', accessToken.value, {

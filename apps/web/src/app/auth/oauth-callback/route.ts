@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
   cookies().delete('session');
 
   const response = setSessionCookiesToResponse(
-    NextResponse.redirect(new URL('/', request.url)),
+    NextResponse.redirect(new URL('/me/posts', request.url)),
     JSON.parse(session),
   );
 

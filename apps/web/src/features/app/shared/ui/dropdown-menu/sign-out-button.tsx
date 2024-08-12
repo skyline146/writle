@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, NavLink } from '@/features/shared/ui';
+import { Button } from '@/features/shared/ui';
 import { IconLogout } from '@tabler/icons-react';
 import { signOut } from '@/features/app/auth/actions';
 

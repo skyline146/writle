@@ -14,7 +14,7 @@ export const jwtAuth = createMiddleware(async (c, next) => {
     const tokenPayload = await verifyJwt(accessToken);
 
     c.set('jwtUser', {
-      id: tokenPayload.userId,
+      userId: tokenPayload.userId,
       sub: tokenPayload.sub
     });
   } catch (e) {

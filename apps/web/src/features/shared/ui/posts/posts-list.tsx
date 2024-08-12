@@ -65,7 +65,7 @@ interface PostsListProps {
 }
 
 export const PostsList = async ({ author, withAuthor }: PostsListProps) => {
-  const posts: any[] = await getPosts();
+  const posts: any[] = [];
 
   return posts.length > 0 ? (
     posts.map((post) => {
@@ -80,6 +80,12 @@ export const PostsList = async ({ author, withAuthor }: PostsListProps) => {
       );
     })
   ) : (
-    <p className='text-lg'>You don't have posts</p>
+    <p className='mx-auto mt-10 text-2xl'>
+      Time to{' '}
+      <span className='bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-2xl font-bold text-transparent'>
+        writle
+      </span>{' '}
+      about something awesome!
+    </p>
   );
 };

@@ -5,6 +5,12 @@ import { NavLink } from '@/features/shared/ui/link';
 import { PostsList, PostCardSkeleton } from '@/features/shared/ui/posts';
 import { User } from '@posts-app/types';
 import { SearchInput } from '@/features/app/me/friends/ui/search-input';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Writle - My Posts',
+  description: 'User related posts page.',
+};
 
 export default function MyPosts() {
   return (

@@ -60,7 +60,7 @@ export const getUserData = async (access_token: string) => {
     email: data.email,
     firstName: data.given_name,
     lastName: data.family_name || null,
-    profilePicture: data.picture || null
+    profilePicture: data.picture?.replace('s96-c', 's240-c') || null
   };
 
   return userData;
