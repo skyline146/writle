@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <section className='m-auto flex h-full w-[800px] flex-col items-center gap-10 font-mono'>
-      <h1 className='text-3xl font-semibold'>
-        About <strong>Writle</strong>
+    <section className='flex h-full flex-col items-center gap-10 font-mono'>
+      <h1 className='text-5xl font-semibold'>
+        About <strong>{`<WRITLE>`}</strong>
       </h1>
       <p className='text-xl'>
         Pet project by{' '}
@@ -24,7 +24,7 @@ export default function About() {
           <IconBrandTelegram className='inline-block opacity-0 transition-opacity duration-300 group-hover/link:opacity-100' />
         </a>
       </p>
-      <div className='flex w-full justify-between *:text-xl'>
+      <div className='flex w-full flex-col justify-center gap-3 *:text-xl md:flex-row md:gap-0'>
         <p className='max-w-[400px] text-balance'>
           Web application for publishing posts/articles, adding friends, viewing
           posts by other people based on your interests.

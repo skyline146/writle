@@ -27,7 +27,7 @@ export const ImageInput = ({ user, control, setFile }: ImageInputProps) => {
       >
         <ProfilePicture
           user={{ ...user, profilePicture: previewUrl }}
-          className='border-4 text-8xl'
+          className='border-4 border-neutral-700 text-8xl'
         />
         <Controller
           name='profilePicture'

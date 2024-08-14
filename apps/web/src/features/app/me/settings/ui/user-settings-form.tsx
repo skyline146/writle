@@ -39,6 +39,8 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
     await updateUserData(data);
   });
 
+  const isCredentials = user.provider === 'credentials';
+
   return (
     <Form
       action={onAction}

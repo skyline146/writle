@@ -7,7 +7,16 @@ const nextConfig = {
       {
         hostname: '*.googleusercontent.com',
       },
+      {
+        hostname: 'res.cloudinary.com',
+        pathname: '/df2grpldq/**',
+      },
     ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '6MB',
+    },
   },
 };
 

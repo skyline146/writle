@@ -7,12 +7,20 @@ import { User } from '@posts-app/types';
 import { SearchInput } from '@/features/app/me/friends/ui/search-input';
 import { Metadata } from 'next';
 
+interface MyPostsProps extends PageProps {
+  searchParams: {
+    searchText?: string;
+  };
+}
+
 export const metadata: Metadata = {
   title: 'Writle - My Posts',
   description: 'User related posts page.',
 };
 
-export default function MyPosts() {
+export default function MyPosts({ searchParams }: MyPostsProps) {
+  const { searchText } = searchParams;
+
   return (
     <>
       <div className='flex items-center justify-between'>
@@ -26,6 +34,7 @@ export default function MyPosts() {
       </div>
       <main className='flex flex-col gap-5'>
         <Suspense
+          key={searchText}
           fallback={
             <>
               <PostCardSkeleton />

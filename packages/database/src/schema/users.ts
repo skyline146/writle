@@ -13,6 +13,7 @@ export const users = pgTable(
     firstName: varchar('first_name', { length: 50 }).notNull(),
     lastName: varchar('last_name', { length: 50 }),
     profilePicture: text('profile_picture'),
+    profilePictureBlurhash: text('profile_picture_blurhash'),
     provider: providerEnum('provider').notNull().default('credentials'),
     registeredAt: timestamp('registered_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull()

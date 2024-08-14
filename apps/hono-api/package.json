@@ -7,12 +7,15 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@posts-app/cloudinary": "workspace:*",
     "@posts-app/database": "workspace:*",
-    "@posts-app/zod": "workspace:*",
     "@posts-app/types": "workspace:*",
+    "@posts-app/zod": "workspace:*",
     "drizzle-orm": "^0.32.1",
     "googleapis": "^140.0.1",
     "hono": "^4.5.3",
+    "plaiceholder": "^3.0.0",
+    "sharp": "^0.33.4",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

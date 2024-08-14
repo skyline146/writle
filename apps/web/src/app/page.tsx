@@ -180,6 +180,42 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <Image
+        src={'/test_profile_picture.jpg'}
+        // className='object-cover'
+        // style={{ overflowClipMargin: 'unset' }}
+        alt="User's profile picture"
+        width={800}
+        height={450}
+        // fill
+        // sizes='100%'
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAIAAACz0DtzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVR4nAEDAfz+AAAAQbyzoP/Lkf+/vbxRTa1DPq5IQLdRT6loRq9XWappa5yDfAAAAEK5tqL/x43/o6KbRknHfFz/uYacQEGqXzmRREWDSk2WZFUAGRdS/9et/9KW2m5uwmtU/96c/72Dsl9btWpB1HxIuXd1gFNnACkpav/AkP+6f7BjYYx2ev+yiv+ofKpCQaxfN7JjNcWNa9uwiQAQKHDakHfqoWvT/v9RVHE5FjfkqIqulpOiXTbkikufS0FDBS4Ad7LRkKmplVI6x///dHSOTSdGxpOFmdjprZFp54U/z3JWn2x2AJbk86bSyqVqSaHf66TO31IzT2uOo5Tb7quVdOGPXPTh7e3z/34Di0M0y6ncAAAAAElFTkSuQmCC'
+      />
+      <Image
+        src={'/test_profile_picture.jpg'}
+        // className='object-cover'
+        // style={{ overflowClipMargin: 'unset' }}
+        alt="User's profile picture"
+        width={800}
+        height={450}
+        // fill
+        // sizes='100%'
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAIAAACz0DtzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVR4nAEDAfz+AAAAQbyzoP/Lkf+/vbxRTa1DPq5IQLdRT6loRq9XWappa5yDfAAAAEK5tqL/x43/o6KbRknHfFz/uYacQEGqXzmRREWDSk2WZFUAGRdS/9et/9KW2m5uwmtU/96c/72Dsl9btWpB1HxIuXd1gFNnACkpav/AkP+6f7BjYYx2ev+yiv+ofKpCQaxfN7JjNcWNa9uwiQAQKHDakHfqoWvT/v9RVHE5FjfkqIqulpOiXTbkikufS0FDBS4Ad7LRkKmplVI6x///dHSOTSdGxpOFmdjprZFp54U/z3JWn2x2AJbk86bSyqVqSaHf66TO31IzT2uOo5Tb7quVdOGPXPTh7e3z/34Di0M0y6ncAAAAAElFTkSuQmCC'
+      />
+      <Image
+        src={'/test_profile_picture.jpg'}
+        // className='object-cover'
+        // style={{ overflowClipMargin: 'unset' }}
+        alt="User's profile picture"
+        width={800}
+        height={450}
+        // fill
+        // sizes='100%'
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAIAAACz0DtzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVR4nAEDAfz+AAAAQbyzoP/Lkf+/vbxRTa1DPq5IQLdRT6loRq9XWappa5yDfAAAAEK5tqL/x43/o6KbRknHfFz/uYacQEGqXzmRREWDSk2WZFUAGRdS/9et/9KW2m5uwmtU/96c/72Dsl9btWpB1HxIuXd1gFNnACkpav/AkP+6f7BjYYx2ev+yiv+ofKpCQaxfN7JjNcWNa9uwiQAQKHDakHfqoWvT/v9RVHE5FjfkqIqulpOiXTbkikufS0FDBS4Ad7LRkKmplVI6x///dHSOTSdGxpOFmdjprZFp54U/z3JWn2x2AJbk86bSyqVqSaHf66TO31IzT2uOo5Tb7quVdOGPXPTh7e3z/34Di0M0y6ncAAAAAElFTkSuQmCC'
+      />
     </div>
   );
 }

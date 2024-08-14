@@ -12,6 +12,7 @@ export const UserDatabaseSchema = z.object({
   lastName: z.string().or(z.null()),
   provider: z.enum(providers),
   profilePicture: z.string().or(z.null()),
+  profilePictureBlurhash: z.string().or(z.null()),
   registeredAt: z.coerce.date(),
   updatedAt: z.coerce.date()
 }) satisfies z.ZodType<UserDatabasePlain>;
@@ -45,6 +46,7 @@ export const UserSchema = z.object({
     .or(z.null()),
   provider: z.enum(providers),
   profilePicture: z.string().or(z.null()),
+  profilePictureBlurhash: z.string().or(z.null()),
   registeredAt: z.date(),
   updatedAt: z.date()
 }) satisfies z.ZodType<UserDatabasePlain>;

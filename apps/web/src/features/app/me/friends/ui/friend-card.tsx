@@ -11,7 +11,7 @@ export const FriendCard = ({ friend }: FriendCardProps) => {
   return (
     <div className='flex items-center justify-between rounded-lg bg-neutral-900 p-5'>
       <div className='flex gap-4'>
-        <ProfilePicture user={friend} className='size-16' />
+        <ProfilePicture user={friend} className='size-16 text-3xl' />
         <div>
           <p className='text-lg'>
             {friend.firstName} {friend.lastName}
