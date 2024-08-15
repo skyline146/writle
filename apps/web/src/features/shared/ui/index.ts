@@ -5,3 +5,4 @@ export * from './link';
 export * from './posts';
 export * from './profile-picture';
 export * from './close-button';
+export * from './search-input';

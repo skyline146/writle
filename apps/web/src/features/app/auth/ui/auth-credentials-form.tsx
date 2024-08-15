@@ -2,8 +2,16 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authMode, FormInputs } from '../form-config';
+import { authMode } from '../config';
 import { Form, SubmitFormButton, Input } from '@/features/shared/ui';
+
+export type FormInputs = {
+  firstName?: string;
+  lastName?: string;
+  username: string;
+  password: string;
+  confirmPassword?: string;
+};
 
 interface AuthFormProps {
   mode: 'signIn' | 'signUp';

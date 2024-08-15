@@ -9,6 +9,8 @@ import { UserSettingsSchema } from '@posts-app/zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { updateUserData } from '../actions';
+import { useEffect } from 'react';
+import { Button } from '@/features/shared/ui';
 
 interface UserSettingsFormProps {
   user: User;
@@ -23,6 +25,7 @@ export type FormInputs = {
 };
 
 export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
+  const { username, firstName, lastName, email } = user;
   const {
     register,
     formState: { errors },
@@ -35,8 +38,19 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
     resolver: zodResolver(UserSettingsSchema),
   });
 
+  useEffect(() => {
+    if (!username) {
+      setError(
+        'username',
+        { message: 'To complete account creation, you must enter username' },
+        { shouldFocus: true },
+      );
+    }
+  }, []);
+
   const onAction: () => void = handleSubmit(async (data: UserSettings) => {
     await updateUserData(data);
+    setValue('profilePicture', undefined);
   });
 
   const isCredentials = user.provider === 'credentials';
@@ -52,9 +66,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
           label='Username'
           defaultValue={user.username || undefined}
           error={errors.username?.message}
-          {...register('username', {
-            setValueAs: (value) => value || null,
-          })}
+          {...register('username')}
         />
         {/* TODO: implement normal disabled input with cva */}
         <Input
@@ -69,7 +81,7 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
               'text-neutral-500 hover:cursor-not-allowed',
           )}
           readOnly={user.provider !== 'credentials'}
-          defaultValue={user.email || undefined}
+          defaultValue={email || undefined}
           error={errors.email?.message}
           {...register('email', {
             setValueAs: (value) => value || null,
@@ -77,19 +89,20 @@ export const UserSettingsForm = ({ user }: UserSettingsFormProps) => {
         />
         <Input
           label='First name'
-          defaultValue={user.firstName}
+          defaultValue={firstName}
           error={errors.firstName?.message}
           {...register('firstName')}
         />
         <Input
           label='Last name'
-          defaultValue={user.lastName || undefined}
+          defaultValue={lastName || undefined}
           error={errors.lastName?.message}
           {...register('lastName', {
             setValueAs: (value) => value || null,
           })}
         />
         <SubmitFormButton>Save</SubmitFormButton>
+        <Button type='button'>Change password</Button>
       </div>
     </Form>
   );

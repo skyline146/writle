@@ -1,5 +1,5 @@
 import { NavLink } from '@/features/shared/ui';
-import { authMode } from '../form-config';
+import { authMode } from '../config';
 import { AuthWithCredentialsForm } from './auth-credentials-form';
 import { OAuthProvidersButtons } from './oauth-providers-buttons';
 

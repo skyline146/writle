@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useDelayedValue } from '@/features/shared/lib/use-delayed-value';
+import { useDelayedValue } from '@/features/shared/lib/hooks';
 import { Input } from '@/features/shared/ui/input';
 import { twMerge } from 'tailwind-merge';
 

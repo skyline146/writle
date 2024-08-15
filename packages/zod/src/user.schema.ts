@@ -19,6 +19,14 @@ export const UserDatabaseSchema = z.object({
 
 export const UserDatabaseWithoutPasswordSchema = UserDatabaseSchema.omit({ password: true });
 
+export const UserProfileSchema = UserDatabaseSchema.pick({
+  username: true,
+  firstName: true,
+  lastName: true,
+  profilePicture: true,
+  profilePictureBlurhash: true
+});
+
 export const UserSchema = z.object({
   id: z.string().uuid(),
   username: z
@@ -53,9 +61,9 @@ export const UserSchema = z.object({
 
 export const UserSettingsSchema = UserSchema.pick({
   firstName: true,
-  lastName: true
+  lastName: true,
+  username: true
 }).extend({
-  username: UserSchema.shape.username.or(z.null()),
   email: UserSchema.shape.email.or(z.null()),
   profilePicture: z
     .any()

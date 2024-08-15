@@ -6,11 +6,10 @@ import {
   SignUpWithConfirmPassword,
 } from '@posts-app/types';
 import { SessionCookies } from '@posts-app/types';
-import { setSessionCookies } from '@/features/shared/lib/set-session-cookies';
+import { setSessionCookies } from '@/features/shared/session';
 import { API_URLS } from '@/features/shared/config';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
 
 export async function signUp(
   userAgent: string,
@@ -78,7 +77,6 @@ export async function signOut() {
   cookies().delete('sessionId');
   cookies().delete('accessToken');
 
-  revalidateTag('currentUser');
   redirect('/');
 }
 

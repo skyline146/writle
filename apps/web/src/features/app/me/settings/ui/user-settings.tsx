@@ -1,7 +1,6 @@
 import { getCurrentUser } from '@/features/app/shared/get-current-user';
 import { User } from '@posts-app/types';
 import { UserSettingsForm } from './user-settings-form';
-import { cookies } from 'next/headers';
 
 export const UserSettings = async () => {
   const user = (await getCurrentUser()) as User;

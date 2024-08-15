@@ -3,8 +3,8 @@ import { cors } from 'hono/cors';
 import { csrf } from 'hono/csrf';
 import { logger } from 'hono/logger';
 import { allowedOrigins, port } from './config';
-import { authRouter } from './auth';
-import { usersRouter } from './users';
+import { authRoute } from './auth';
+import { usersRoute } from './users/users.route';
 import { responseSerialize } from './middlewares';
 import { TestSchema } from '@posts-app/zod';
 import { stream } from 'hono/streaming';
@@ -54,8 +54,8 @@ app.get('/file', async (c) => {
 });
 
 //api route groups
-app.route('/auth', authRouter);
-app.route('/users', usersRouter);
+app.route('/auth', authRoute);
+app.route('/users', usersRoute);
 
 app.notFound((c) => c.json({ message: 'Endpoint not found' }, 404));
 

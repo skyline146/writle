@@ -1,13 +1,14 @@
 import { Hono } from 'hono';
 import { jwtAuth, responseSerialize } from '../middlewares';
-import { usersService } from '.';
-import { UserDatabaseWithoutPasswordSchema } from '@posts-app/zod';
+import { UserDatabaseWithoutPasswordSchema, UserProfileSchema } from '@posts-app/zod';
 import { UserSettings } from '@posts-app/types';
 import { v4 as uuid } from 'uuid';
 import { getFileExtension } from '../lib/get-file-extension';
 import { uploadToCloudinaryStream } from '@posts-app/cloudinary';
 import sharp from 'sharp';
-import { getPlaiceholder } from 'plaiceholder';
+import { getPictureBlurhashUrl } from '../lib/get-picture-blurhash-url';
+import usersService from './users.service';
+import { httpException } from '../lib/httpException';
 
 type Variables = {
   jwtUser: {
@@ -16,13 +17,13 @@ type Variables = {
   };
 };
 
-const usersRouter = new Hono<{ Variables: Variables }>();
+const usersRoute = new Hono<{ Variables: Variables }>();
 
-usersRouter.get('/', (c) => {
+usersRoute.get('/', (c) => {
   return c.json({ a: '123' });
 });
 
-usersRouter.get(
+usersRoute.get(
   '/current',
   jwtAuth,
   responseSerialize(UserDatabaseWithoutPasswordSchema),
@@ -35,7 +36,7 @@ usersRouter.get(
   }
 );
 
-usersRouter.patch('/current', jwtAuth, async (c) => {
+usersRoute.patch('/current', jwtAuth, async (c) => {
   const body = await c.req.parseBody();
   const { userId } = c.get('jwtUser');
 
@@ -47,7 +48,7 @@ usersRouter.patch('/current', jwtAuth, async (c) => {
   if (!newUserData.profilePicture) {
     const { profilePicture, ...rest } = newUserData;
 
-    await usersService.update(userId, {
+    await usersService.updateUserData(userId, {
       ...rest,
       ...(profilePicture === null && { profilePicture: null, profilePictureBlurhash: null })
     });
@@ -65,16 +66,16 @@ usersRouter.patch('/current', jwtAuth, async (c) => {
   if (mediaFileFormat === '.gif') {
     const jpegBufferFromGif = await sharp(mediaFileBuffer).jpeg().toBuffer();
 
-    profilePictureBlurhash = (await getPlaiceholder(jpegBufferFromGif, { size: 12 })).base64;
+    profilePictureBlurhash = await getPictureBlurhashUrl(jpegBufferFromGif, 12);
   } else {
-    profilePictureBlurhash = (await getPlaiceholder(mediaFileBuffer, { size: 12 })).base64;
+    profilePictureBlurhash = await getPictureBlurhashUrl(mediaFileBuffer, 12);
   }
 
   try {
     const pictureUrl = await uploadToCloudinaryStream(mediaFileBuffer, uuid());
 
     if (pictureUrl) {
-      await usersService.update(userId, {
+      await usersService.updateUserData(userId, {
         ...newUserData,
         profilePicture: pictureUrl,
         profilePictureBlurhash
@@ -91,8 +92,16 @@ usersRouter.patch('/current', jwtAuth, async (c) => {
   return c.text('Successfully updated!');
 });
 
-usersRouter.get('/:id', (c) => {
-  return c.json({ a: '123' });
+usersRoute.get('/:username', responseSerialize(UserProfileSchema), async (c) => {
+  const username = c.req.param('username');
+
+  const user = await usersService.findOneByUsernameOrEmail(username);
+
+  if (!user) {
+    throw httpException(c, 404, 'User not found');
+  }
+
+  return c.json(user);
 });
 
-export { usersRouter };
+export { usersRoute };

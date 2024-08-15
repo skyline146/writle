@@ -1,11 +1,8 @@
 import { SectionTitle } from '@/features/app/me/ui/section-title';
 import { Suspense } from 'react';
-import {
-  FriendsList,
-  FriendCardSkeleton,
-  SearchInput,
-} from '@/features/app/me/friends/ui';
+import { FriendsList, FriendCardSkeleton } from '@/features/app/me/friends/ui';
 import { Metadata } from 'next';
+import { SearchInput } from '@/features/shared/ui';
 
 interface FriendsProps extends PageProps {
   searchParams: {

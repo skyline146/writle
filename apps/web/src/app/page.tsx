@@ -4,6 +4,42 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <div className='flex h-full flex-col items-center justify-between'>
+      <Image
+        src={'/test_profile_picture.jpg'}
+        // className='object-cover'
+        // style={{ overflowClipMargin: 'unset' }}
+        alt="User's profile picture"
+        width={800}
+        height={450}
+        // fill
+        // sizes='100%'
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgQF/8QAHhAAAgIDAAMBAAAAAAAAAAAAAgMBBAAFESEiMXH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABwRAAICAgMAAAAAAAAAAAAAAAEDAhEAYQQFFP/aAAwDAQACEQMRAD8ARv0F+s8jXYVNoZ9nlPgvzJ26ew45Oxd6yfsxmHqbD7u6QNhzCAVyUD3x3FCGEQdnn3H7YIpbATW8m3qGc8l65CN6z//Z'
+      />
+      <Image
+        src={'/test_profile_picture.jpg'}
+        // className='object-cover'
+        // style={{ overflowClipMargin: 'unset' }}
+        alt="User's profile picture"
+        width={800}
+        height={450}
+        // fill
+        // sizes='100%'
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAIAAACz0DtzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVR4nAEDAfz+AAAAQbyzoP/Lkf+/vbxRTa1DPq5IQLdRT6loRq9XWappa5yDfAAAAEK5tqL/x43/o6KbRknHfFz/uYacQEGqXzmRREWDSk2WZFUAGRdS/9et/9KW2m5uwmtU/96c/72Dsl9btWpB1HxIuXd1gFNnACkpav/AkP+6f7BjYYx2ev+yiv+ofKpCQaxfN7JjNcWNa9uwiQAQKHDakHfqoWvT/v9RVHE5FjfkqIqulpOiXTbkikufS0FDBS4Ad7LRkKmplVI6x///dHSOTSdGxpOFmdjprZFp54U/z3JWn2x2AJbk86bSyqVqSaHf66TO31IzT2uOo5Tb7quVdOGPXPTh7e3z/34Di0M0y6ncAAAAAElFTkSuQmCC'
+      />
+      <Image
+        src={'/test_profile_picture.jpg'}
+        // className='object-cover'
+        // style={{ overflowClipMargin: 'unset' }}
+        alt="User's profile picture"
+        width={800}
+        height={450}
+        // fill
+        // sizes='100%'
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAMAAwDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgQF/8QAHhAAAgIDAAMBAAAAAAAAAAAAAgMBBAAFESEiMXH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABwRAAICAgMAAAAAAAAAAAAAAAEDAhEAYQQFFP/aAAwDAQACEQMRAD8ARv0F+s8jXYVNoZ9nlPgvzJ26ew45Oxd6yfsxmHqbD7u6QNhzCAVyUD3x3FCGEQdnn3H7YIpbATW8m3qGc8l65CN6z//Z'
+      />
       {/* TODO: load posts from friends */}
       <div className='z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex'>
         {/* <Link
@@ -180,42 +216,6 @@ export default function Home() {
           </p>
         </a>
       </div>
-      <Image
-        src={'/test_profile_picture.jpg'}
-        // className='object-cover'
-        // style={{ overflowClipMargin: 'unset' }}
-        alt="User's profile picture"
-        width={800}
-        height={450}
-        // fill
-        // sizes='100%'
-        placeholder='blur'
-        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAIAAACz0DtzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVR4nAEDAfz+AAAAQbyzoP/Lkf+/vbxRTa1DPq5IQLdRT6loRq9XWappa5yDfAAAAEK5tqL/x43/o6KbRknHfFz/uYacQEGqXzmRREWDSk2WZFUAGRdS/9et/9KW2m5uwmtU/96c/72Dsl9btWpB1HxIuXd1gFNnACkpav/AkP+6f7BjYYx2ev+yiv+ofKpCQaxfN7JjNcWNa9uwiQAQKHDakHfqoWvT/v9RVHE5FjfkqIqulpOiXTbkikufS0FDBS4Ad7LRkKmplVI6x///dHSOTSdGxpOFmdjprZFp54U/z3JWn2x2AJbk86bSyqVqSaHf66TO31IzT2uOo5Tb7quVdOGPXPTh7e3z/34Di0M0y6ncAAAAAElFTkSuQmCC'
-      />
-      <Image
-        src={'/test_profile_picture.jpg'}
-        // className='object-cover'
-        // style={{ overflowClipMargin: 'unset' }}
-        alt="User's profile picture"
-        width={800}
-        height={450}
-        // fill
-        // sizes='100%'
-        placeholder='blur'
-        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAIAAACz0DtzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVR4nAEDAfz+AAAAQbyzoP/Lkf+/vbxRTa1DPq5IQLdRT6loRq9XWappa5yDfAAAAEK5tqL/x43/o6KbRknHfFz/uYacQEGqXzmRREWDSk2WZFUAGRdS/9et/9KW2m5uwmtU/96c/72Dsl9btWpB1HxIuXd1gFNnACkpav/AkP+6f7BjYYx2ev+yiv+ofKpCQaxfN7JjNcWNa9uwiQAQKHDakHfqoWvT/v9RVHE5FjfkqIqulpOiXTbkikufS0FDBS4Ad7LRkKmplVI6x///dHSOTSdGxpOFmdjprZFp54U/z3JWn2x2AJbk86bSyqVqSaHf66TO31IzT2uOo5Tb7quVdOGPXPTh7e3z/34Di0M0y6ncAAAAAElFTkSuQmCC'
-      />
-      <Image
-        src={'/test_profile_picture.jpg'}
-        // className='object-cover'
-        // style={{ overflowClipMargin: 'unset' }}
-        alt="User's profile picture"
-        width={800}
-        height={450}
-        // fill
-        // sizes='100%'
-        placeholder='blur'
-        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAHCAIAAACz0DtzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABDklEQVR4nAEDAfz+AAAAQbyzoP/Lkf+/vbxRTa1DPq5IQLdRT6loRq9XWappa5yDfAAAAEK5tqL/x43/o6KbRknHfFz/uYacQEGqXzmRREWDSk2WZFUAGRdS/9et/9KW2m5uwmtU/96c/72Dsl9btWpB1HxIuXd1gFNnACkpav/AkP+6f7BjYYx2ev+yiv+ofKpCQaxfN7JjNcWNa9uwiQAQKHDakHfqoWvT/v9RVHE5FjfkqIqulpOiXTbkikufS0FDBS4Ad7LRkKmplVI6x///dHSOTSdGxpOFmdjprZFp54U/z3JWn2x2AJbk86bSyqVqSaHf66TO31IzT2uOo5Tb7quVdOGPXPTh7e3z/34Di0M0y6ncAAAAAElFTkSuQmCC'
-      />
     </div>
   );
 }
