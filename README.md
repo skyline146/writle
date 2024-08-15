@@ -7,12 +7,13 @@
   - [React](https://react.dev/)
   - [TailwindCSS](https://tailwindcss.com/)
 - ### Backend:
-  - [Nest.js](https://nestjs.com/) (fastify adapter)
-  - [Prisma](https://www.prisma.io/)
+  - [Hono](https://hono.dev/)
+  - [DrizzleORM](https://orm.drizzle.team/)
   - [PostgreSQL](https://www.postgresql.org/)
 - ### Tools:
   - [Turborepo](https://turbo.build/repo)
-  - [Docker](https://www.docker.com/) ([compose](https://docs.docker.com/compose/))
+  - [Docker](https://www.docker.com/)
+  - [Bun](https://bun.sh/)
 
 ## Getting Started (pnpm required)
 
@@ -20,12 +21,16 @@
 
 ```bash
 pnpm install
+or
+bun install
 ```
 
 ### Run in development mode:
 
 ```bash
 pnpm run dev
+or
+bun run dev
 ```
 
 This comand in the background will fire:
@@ -39,9 +44,7 @@ In `turbo.json`:
 ```json
 "tasks": {
     "dev": {
-      "dependsOn": ["^dev"],
-      "cache": false,
-      "persistent": true
+      "cache": false
     }
   }
 ```
@@ -53,7 +56,6 @@ Starting applications in development mode separately:
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 API: [http://localhost:4000](http://localhost:4000)
-You can configure ports in `.env` file of each application: `./apps/*/.env`.
 
 ### Run in production mode:
 
