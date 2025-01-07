@@ -1,0 +1,12 @@
+{
+    "$schema": "https://www.krakend.io/schema/krakend.json",
+    "version": 3,
+    "name": "Writle API Gateway",
+    "timeout": "3000ms",
+    "debug_endpoint": true,
+    "port": {{ .service.port }},
+    "extra_config": {{ marshal .service.extra_config }},
+    "endpoints": [
+        {{ template "endpoints.tmpl" (dict "base" .endpoints.users.base "endpoints" .endpoints.users.endpoints "host" .hosts.users_api) }}
+    ]
+}

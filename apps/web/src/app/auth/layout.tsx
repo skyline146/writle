@@ -1,11 +1,11 @@
 export default function AuthLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <section className='flex h-full items-center justify-center'>
-      {children}
-    </section>
-  );
+	return (
+		<section className="flex h-full items-center justify-center">
+			{children}
+		</section>
+	);
 }

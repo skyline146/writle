@@ -1,19 +1,20 @@
-import { Hono } from 'hono';
-import { cors } from 'hono/cors';
-import { csrf } from 'hono/csrf';
-import { logger } from 'hono/logger';
-import { allowedOrigins, port } from './config';
-import { authRoute } from './auth';
-import { usersRoute } from './users/users.route';
-import { responseSerialize } from './middlewares';
-import { TestSchema } from '@posts-app/zod';
-import { stream } from 'hono/streaming';
-import { join } from 'path';
+import { join } from "path";
+import { TestSchema } from "@posts-app/zod";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { csrf } from "hono/csrf";
+import { logger } from "hono/logger";
+import { stream } from "hono/streaming";
+import { authRoute } from "./auth";
+import { port } from "./config";
+import { responseSerialize } from "./middlewares";
+import { usersRoute } from "./users/users.route";
 
-const app = new Hono({ strict: false }).basePath('/api');
+const app = new Hono({ strict: false });
+// .basePath('/api');
 
 //middlewares
-app.use('*', logger());
+app.use("*", logger());
 
 // app.use(
 //   '*',
@@ -21,49 +22,51 @@ app.use('*', logger());
 //     origin: allowedOrigins
 //   })
 // );
-app.use(
-  '*',
-  cors({
-    origin: allowedOrigins,
-    credentials: true
-  })
-);
+// app.use(
+//   '*',
+//   cors({
+//     origin: '*',
+//     credentials: true,
+//   }),
+// );
 
-app.get('/', async (c) => {
-  return c.text('Hello World!');
+app.get("/", async (c) => {
+	return c.text("Hello World!");
 });
 
-app.get('/test', responseSerialize(TestSchema), async (c) => {
-  return c.json({
-    hello: 'world',
-    test: '123'
-  });
+app.get("/test", responseSerialize(TestSchema), async (c) => {
+	return c.json({
+		hello: "world",
+		test: "123",
+	});
 });
 
-app.get('/file', async (c) => {
-  return stream(c, async (stream) => {
-    // Write a process to be executed when aborted.
-    stream.onAbort(() => {
-      console.log('Aborted!');
-    });
-    // Pipe a readable stream.
+app.get("/file", async (c) => {
+	return stream(c, async (stream) => {
+		// Write a process to be executed when aborted.
+		stream.onAbort(() => {
+			console.log("Aborted!");
+		});
+		// Pipe a readable stream.
 
-    const file = Bun.file('./static/test1.jpg');
-    await stream.pipe(file.stream());
-  });
+		const file = Bun.file("./static/test1.jpg");
+		await stream.pipe(file.stream());
+	});
 });
 
 //api route groups
-app.route('/auth', authRoute);
-app.route('/users', usersRoute);
+app.route("/auth", authRoute);
+app.route("/users", usersRoute);
 
-app.notFound((c) => c.json({ message: 'Endpoint not found' }, 404));
+app.notFound((c) => c.json({ message: "Endpoint not found" }, 404));
 
 console.log(
-  `Hello World! Api is running on port: ${port} and ready to accept requests!\nVisit: http://localhost:${port}/api`
+	`Hello World! Api is running on port: ${port} and ready to accept requests!\nVisit: http://localhost:${port}/api`,
 );
 
-export default {
-  fetch: app.fetch,
-  port
-};
+export { app };
+
+Bun.serve({
+	fetch: app.fetch,
+	port,
+});

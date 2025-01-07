@@ -1,0 +1,6 @@
+{
+	"name": "@posts-app/minio",
+	"dependencies": {
+		"minio": "^8.0.1"
+	}
+}

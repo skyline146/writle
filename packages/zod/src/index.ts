@@ -1,3 +1,3 @@
-export * from './user.schema';
-export * from './auth.schema';
-export * from './test.schema';
+export * from "./user.schema";
+export * from "./auth.schema";
+export * from "./test.schema";

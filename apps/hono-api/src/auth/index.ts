@@ -1,2 +1,2 @@
-export * from './auth.route';
-export * as authService from './auth.service';
+export * from "./auth.route";
+export * as authService from "./auth.service";

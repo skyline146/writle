@@ -1,13 +1,30 @@
-import sharp from 'sharp';
+import sharp from "sharp";
+import { getFileExtension } from "./get-file-extension";
 
-export const getPictureBlurhashUrl = async (buffer: Buffer, size: number) => {
-  const resizedImage = await sharp(buffer)
-    .resize({
-      width: size,
-      height: size
-    })
-    .blur()
-    .toBuffer();
+interface Options {
+	fileBuffer: Buffer;
+	size: number;
+	fileName: string;
+}
 
-  return `data:image/png;base64,${resizedImage.toString('base64')}`;
+export const getPictureBlurhashUrl = async ({
+	fileBuffer,
+	size,
+	fileName,
+}: Options) => {
+	const mediaFileFormat = getFileExtension(fileName);
+	let mediaFileBuffer = fileBuffer;
+
+	if (mediaFileFormat === ".gif")
+		mediaFileBuffer = await sharp(mediaFileBuffer).jpeg().toBuffer();
+
+	const resizedBlurredImage = await sharp(mediaFileBuffer)
+		.resize({
+			width: size,
+			height: size,
+		})
+		.blur()
+		.toBuffer();
+
+	return `data:image/png;base64,${resizedBlurredImage.toString("base64")}`;
 };

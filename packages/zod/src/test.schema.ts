@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const TestSchema = z.object({
-  test: z.string()
+	test: z.string(),
 });

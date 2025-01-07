@@ -1,24 +1,24 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "ui": "stream",
-  "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "env": ["API_URL", "PORT", "JWT_SECRET", "ALLOWED_ORIGINS"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/*"]
-    },
-    "dev": {
-      "cache": false
-    },
-    "nextjs-frontend#start": {
-      "dependsOn": ["build"]
-    },
-    "check-types": {
-      "cache": false
-    },
-    "format": {
-      "cache": false
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "stream",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"env": ["API_URL", "PORT", "JWT_SECRET", "ALLOWED_ORIGINS"],
+			"outputs": [".next/**", "!.next/cache/**", "dist/*"]
+		},
+		"dev": {
+			"cache": false
+		},
+		"nextjs-frontend#start": {
+			"dependsOn": ["build"]
+		},
+		"check-types": {
+			"cache": false
+		},
+		"format": {
+			"cache": false
+		}
+	}
 }

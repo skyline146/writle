@@ -1,0 +1,22 @@
+{
+	"$schema": "https://www.krakend.io/schema/v2.7/krakend.json",
+	"version": 3,
+	"port": 4000,
+	"extra_config": {
+		"router": {
+			"remove_extra_slash": true,
+			"return_error_msg": true,
+			"forwarded_by_client_ip": true,
+			"remote_ip_headers": ["X-Forwarded-For"],
+			"auto_options": true
+		},
+		"security/http": {
+			"allowed_hosts": []
+		},
+		"security/cors": {
+			"allow_methods": ["POST", "GET", "PATCH", "DELETE"],
+			"allow_origins": ["http://localhost:3000"],
+			"allow_credentials": true
+		}
+	}
+}

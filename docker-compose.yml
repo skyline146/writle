@@ -3,8 +3,8 @@ services:
     image: postgres
     container_name: postgres-db
     restart: always
-    env_file:
-      - /packages/database/.env
+    # env_file:
+    #   - /packages/database/.env
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -12,21 +12,7 @@ services:
     volumes:
       - ./packages/database/pgdata:/var/lib/postgresql/data
     ports:
-      - '5432:5432'
-
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: always
-    container_name: pgadmin4
-    env_file:
-      - /packages/database/.env
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
-      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
-    ports:
-      - '5050:80'
-    depends_on:
-      - db
+      - "5432:5432"
 
   minio:
     image: minio/minio:latest
@@ -35,16 +21,32 @@ services:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
     ports:
-      - '9000:9000'
-      - '9001:9001'
+      - "9000:9000"
+      - "9001:9001"
     volumes:
       - ./minio:/data
     command: server /data --console-address ":9001"
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
       timeout: 20s
       retries: 3
+
+  api-gateway:
+    image: devopsfaith/krakend:watch
+    volumes:
+      - "./krakend:/etc/krakend"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "4000:4000"
+    environment:
+      - FC_ENABLE=1
+      - FC_OUT=/etc/krakend/krakend.json
+      # - FC_PARTIALS=/etc/krakend/config/partials
+      - FC_SETTINGS=/etc/krakend/config/settings
+      - FC_TEMPLATES=/etc/krakend/config/templates
+    command: ["run", "-dc", "krakend.tmpl"]
 
   # api:
   #   build:
@@ -74,15 +76,16 @@ services:
   #   volumes:
   #     - ./apps/posts-web/src:/posts-web-app/src
 
-  # admin-panel:
-  #   build:
-  #     context: ./apps/admin-panel
-  #     dockerfile: Dockerfile
-  #   container_name: admin-panel
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   container_name: pgadmin4
+  #   env_file:
+  #     - /packages/database/.env
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+  #     - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
   #   ports:
-  #     - '3001:3001'
-  #   volumes:
-  #     - ../v2hx-frontend/src:/frontend/src
-  #     - ../v2hx-frontend/public/features.json:/frontend/dist/features.json
-  #     - ../v2hx-frontend/public/robots.txt:/frontend/dist/robots.txt
-  #     - ../v2hx-frontend/public/sitemap.xml:/frontend/dist/sitemap.xml
+  #     - "5050:80"
+  #   depends_on:
+  #     - db

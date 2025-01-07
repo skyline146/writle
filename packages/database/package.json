@@ -1,28 +1,28 @@
 {
-  "name": "@posts-app/database",
-  "version": "1.0.0",
-  "description": "Database configuration and setup",
-  "exports": {
-    "./db": {
-      "default": "./src/db.ts"
-    },
-    "./schema": {
-      "default": "./src/schema/index.ts"
-    }
-  },
-  "scripts": {
-    "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate",
-    "push": "drizzle-kit push",
-    "studio": "drizzle-kit studio --port 7070 --verbose"
-  },
-  "dependencies": {
-    "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.32.1",
-    "postgres": "^3.4.4"
-  },
-  "devDependencies": {
-    "@types/pg": "^8.11.6",
-    "drizzle-kit": "^0.23.1"
-  }
+	"name": "@posts-app/database",
+	"version": "1.0.0",
+	"description": "Database configuration and setup",
+	"exports": {
+		"./db": {
+			"default": "./src/db.ts"
+		},
+		"./schema": {
+			"default": "./src/schema/index.ts"
+		}
+	},
+	"scripts": {
+		"generate": "drizzle-kit generate",
+		"migrate": "drizzle-kit migrate",
+		"push": "drizzle-kit push",
+		"studio": "drizzle-kit studio --port 7070 --verbose"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5",
+		"drizzle-orm": "^0.32.1",
+		"postgres": "^3.4.4"
+	},
+	"devDependencies": {
+		"@types/pg": "^8.11.6",
+		"drizzle-kit": "^0.23.1"
+	}
 }

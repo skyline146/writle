@@ -1,0 +1,39 @@
+{
+	"users": {
+		"base": "/users",
+		"endpoints": [
+			{
+				"path": "",
+				"method": "GET",
+				"backend": {
+					"url_pattern": "",
+					"method": "GET"
+				}
+			},
+			{
+				"path": "/{id}",
+				"method": "GET",
+				"backend": {
+					"url_pattern": "/{id}",
+					"method": "GET"
+				}
+			},
+			{
+				"path": "/current",
+				"method": "GET",
+				"backend": {
+					"url_pattern": "/current",
+					"method": "GET"
+				}
+			},
+			{
+				"path": "/current",
+				"method": "PATCH",
+				"backend": {
+					"url_pattern": "/current",
+					"method": "PATCH"
+				}
+			}
+		]
+	}
+}

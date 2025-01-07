@@ -1,42 +1,42 @@
 {
-  "name": "posts-app-nextjs-frontend",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev:custom": "node dev-server.js",
-    "dev": "next dev --turbo ",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "check-types": "tsc --noEmit",
-    "format": "prettier -w '**/*.{ts,js,tsx,jsx,json}'"
-  },
-  "dependencies": {
-    "@hookform/resolvers": "^3.9.0",
-    "@posts-app/types": "workspace:*",
-    "@posts-app/zod": "workspace:*",
-    "@tabler/icons-react": "^3.7.0",
-    "next": "^15.0.0-rc.0",
-    "react": "^19.0.0-rc-2d2cc042-20240809",
-    "react-dom": "^19.0.0-rc-2d2cc042-20240809",
-    "react-hook-form": "^7.52.1",
-    "server-only": "^0.0.1",
-    "sharp": "^0.33.4",
-    "tailwind-merge": "^2.3.0",
-    "zod": "^3.23.8"
-  },
-  "devDependencies": {
-    "@types/cookie": "^0.6.0",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "dotenv": "^16.4.5",
-    "eslint": "^8",
-    "eslint-config-next": "^15.0.0-rc.0",
-    "postcss": "^8",
-    "prettier": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+	"name": "posts-app-nextjs-frontend",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev:custom": "node dev-server.js",
+		"dev": "next dev --turbo ",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"check-types": "tsc --noEmit",
+		"format": "prettier -w '**/*.{ts,js,tsx,jsx,json}'"
+	},
+	"dependencies": {
+		"@hookform/resolvers": "^3.9.0",
+		"@posts-app/types": "workspace:*",
+		"@posts-app/zod": "workspace:*",
+		"@tabler/icons-react": "^3.7.0",
+		"next": "^15.0.0-rc.0",
+		"react": "^19.0.0-rc-2d2cc042-20240809",
+		"react-dom": "^19.0.0-rc-2d2cc042-20240809",
+		"react-hook-form": "^7.52.1",
+		"server-only": "^0.0.1",
+		"sharp": "^0.33.4",
+		"tailwind-merge": "^2.3.0",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@types/cookie": "^0.6.0",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"dotenv": "^16.4.5",
+		"eslint": "^8",
+		"eslint-config-next": "^15.0.0-rc.0",
+		"postcss": "^8",
+		"prettier": "^3.3.2",
+		"prettier-plugin-tailwindcss": "^0.6.5",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	}
 }

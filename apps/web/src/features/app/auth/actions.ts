@@ -1,85 +1,85 @@
-'use server';
+"use server";
 
-import { redirect } from 'next/navigation';
-import {
-  SignInWithCredentials,
-  SignUpWithConfirmPassword,
-} from '@posts-app/types';
-import { SessionCookies } from '@posts-app/types';
-import { setSessionCookies } from '@/features/shared/session';
-import { API_URLS } from '@/features/shared/config';
-import { revalidateTag } from 'next/cache';
-import { cookies } from 'next/headers';
+import { API_URLS } from "@/features/shared/config";
+import { setSessionCookies } from "@/features/shared/session";
+import type {
+	SignInWithCredentials,
+	SignUpWithConfirmPassword,
+} from "@posts-app/types";
+import type { SessionCookies } from "@posts-app/types";
+import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function signUp(
-  userAgent: string,
-  formData: SignUpWithConfirmPassword,
+	userAgent: string,
+	formData: SignUpWithConfirmPassword,
 ) {
-  const { confirmPassword, ...userData } = formData;
+	const { confirmPassword, ...userData } = formData;
 
-  await fetch(API_URLS.AUTH.SIGN_UP, {
-    method: 'POST',
-    body: JSON.stringify(userData),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      const session: SessionCookies = data;
+	await fetch(API_URLS.AUTH.SIGN_UP, {
+		method: "POST",
+		body: JSON.stringify(userData),
+	})
+		.then((res) => res.json())
+		.then((data) => {
+			const session: SessionCookies = data;
 
-      setSessionCookies(session);
+			setSessionCookies(session);
 
-      redirect('/me/posts');
-    })
-    .catch((e) => {
-      console.error(e);
-    });
+			redirect("/me/posts");
+		})
+		.catch((e) => {
+			console.error(e);
+		});
 }
 
 export async function signIn(
-  userAgent: string,
-  formData: SignInWithCredentials,
+	userAgent: string,
+	formData: SignInWithCredentials,
 ) {
-  const response = await fetch(API_URLS.AUTH.SIGN_IN, {
-    method: 'POST',
-    body: JSON.stringify(formData),
-    headers: {
-      'user-agent': userAgent,
-    },
-  });
+	const response = await fetch(API_URLS.AUTH.SIGN_IN, {
+		method: "POST",
+		body: JSON.stringify(formData),
+		headers: {
+			"user-agent": userAgent,
+		},
+	});
 
-  if (!response.ok) {
-    console.log(await response.text());
+	if (!response.ok) {
+		console.log(await response.text());
 
-    return;
-    // return {
-    //   ...prevState,
-    //   username: await response.text(),
-    // };
-  }
+		return;
+		// return {
+		//   ...prevState,
+		//   username: await response.text(),
+		// };
+	}
 
-  console.log(await response.text());
+	console.log(await response.text());
 
-  // return prevState;
+	// return prevState;
 }
 
 export async function signOut() {
-  const response = await fetch(API_URLS.AUTH.SIGN_OUT, {
-    method: 'POST',
-    headers: {
-      cookie: cookies().toString(),
-    },
-  });
+	const response = await fetch(API_URLS.AUTH.SIGN_OUT, {
+		method: "POST",
+		headers: {
+			cookie: cookies().toString(),
+		},
+	});
 
-  if (!response.ok) {
-    console.log(await response.text());
-    return;
-  }
+	if (!response.ok) {
+		console.log(await response.text());
+		return;
+	}
 
-  cookies().delete('sessionId');
-  cookies().delete('accessToken');
+	cookies().delete("sessionId");
+	cookies().delete("accessToken");
 
-  redirect('/');
+	redirect("/");
 }
 
 export async function signWithOAuth(url: string) {
-  redirect(url);
+	redirect(url);
 }

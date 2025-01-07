@@ -1,0 +1,63 @@
+{
+	"$schema": "https://www.krakend.io/schema/krakend.json",
+	"version": 3,
+	"name": "Writle API Gateway",
+	"timeout": "3000ms",
+	"debug_endpoint": true,
+	"port": 4000,
+	"extra_config": {
+		"router": {
+			"forwarded_by_client_ip": true,
+			"remote_ip_headers": ["X-Forwarded-For"],
+			"remove_extra_slash": true,
+			"return_error_msg": true
+		},
+		"security/http": { "allowed_hosts": [] }
+	},
+	"endpoints": [
+		{
+			"endpoint": "/users",
+			"method": "GET",
+			"backend": [
+				{
+					"url_pattern": "/users",
+					"method": "GET",
+					"host": ["http://host.docker.internal:4002"]
+				}
+			]
+		},
+		{
+			"endpoint": "/users/{id}",
+			"method": "GET",
+			"backend": [
+				{
+					"url_pattern": "/users/{id}",
+					"method": "GET",
+					"host": ["http://host.docker.internal:4002"]
+				}
+			]
+		},
+		{
+			"endpoint": "/users/current",
+			"method": "GET",
+			"backend": [
+				{
+					"url_pattern": "/users/current",
+					"method": "GET",
+					"host": ["http://host.docker.internal:4002"]
+				}
+			]
+		},
+		{
+			"endpoint": "/users/current",
+			"method": "PATCH",
+			"backend": [
+				{
+					"url_pattern": "/users/current",
+					"method": "PATCH",
+					"host": ["http://host.docker.internal:4002"]
+				}
+			]
+		}
+	]
+}

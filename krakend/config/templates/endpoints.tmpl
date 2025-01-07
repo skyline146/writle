@@ -1,0 +1,16 @@
+{{- range $idx, $endpoint := .endpoints }}
+{{- if $idx }},{{ end }}
+    {
+        "endpoint": "{{ $.base }}{{ $endpoint.path }}",
+        "method": "{{ $endpoint.method }}",
+        "backend": [
+            {
+                "url_pattern": "{{ $.base }}{{ $endpoint.backend.url_pattern }}",
+                "method": "{{ $endpoint.backend.method }}",
+                "host": [
+                    "{{ $.host }}"
+                ]
+            }
+        ]
+    }
+{{- end }}

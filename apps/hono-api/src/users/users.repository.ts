@@ -1,19 +1,22 @@
-import { db } from '@posts-app/database/db';
-import { users } from '@posts-app/database/schema';
-import { InsertUser, UserDatabase } from '@posts-app/types';
-import { eq, SQL } from 'drizzle-orm';
-import { PgUpdateSetSource, SelectedFields } from 'drizzle-orm/pg-core';
+import { db } from "@posts-app/database/db";
+import { users } from "@posts-app/database/schema";
+import { type InsertUser, UserDatabase } from "@posts-app/types";
+import { SQL, eq } from "drizzle-orm";
+import { type PgUpdateSetSource, SelectedFields } from "drizzle-orm/pg-core";
 
 const create = async (newUser: InsertUser) => {
-  const [{ id }] = await db.insert(users).values(newUser).returning({
-    id: users.id
-  });
+	const [{ id }] = await db.insert(users).values(newUser).returning({
+		id: users.id,
+	});
 
-  return id;
+	return id;
 };
 
-const update = async (id: string, newUserData: PgUpdateSetSource<typeof users>) => {
-  await db.update(users).set(newUserData).where(eq(users.id, id));
+const update = async (
+	id: string,
+	newUserData: PgUpdateSetSource<typeof users>,
+) => {
+	await db.update(users).set(newUserData).where(eq(users.id, id));
 };
 
 // type GetUser<T extends SelectedFields | undefined> = {
@@ -58,6 +61,6 @@ const update = async (id: string, newUserData: PgUpdateSetSource<typeof users>) 
 // }
 
 export default {
-  create,
-  update
+	create,
+	update,
 };

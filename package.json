@@ -1,30 +1,27 @@
 {
-  "name": "writle",
-  "version": "1.0.0",
-  "author": "diman404",
-  "module": "index.ts",
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
-  "devDependencies": {
-    "turbo": "^2.0.9",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "description": "Writle. Api, web application, created using monorepo, Next.js, Hono, DrizzleORM.",
-  "license": "ISC",
-  "packageManager": "bun@1.1.21",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "dev:web": "turbo run dev --filter=posts-app-nextjs-frontend",
-    "dev:api": "turbo run dev --filter=posts-app-hono-api",
-    "check-types": "turbo run check-types",
-    "lint": "turbo run lint",
-    "format": "turbo run format"
-  }
+	"name": "writle",
+	"version": "1.0.0",
+	"author": "diman404",
+	"module": "index.ts",
+	"workspaces": ["packages/*", "apps/*"],
+	"devDependencies": {
+		"turbo": "^2.0.9",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"description": "Writle. Api, web application, created using monorepo, Next.js, Hono, DrizzleORM.",
+	"license": "ISC",
+	"packageManager": "bun@1.1.21",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"dev:web": "turbo run dev --filter=posts-app-nextjs-frontend",
+		"dev:api": "turbo run dev --filter=posts-app-hono-api",
+		"check-types": "turbo run check-types",
+		"lint": "turbo run lint",
+		"format": "turbo run format"
+	}
 }
